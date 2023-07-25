@@ -1,27 +1,15 @@
-# React + TypeScript + Vite
+<div align='center'><img style="width:16%" src='https://github.com/davimgfx/api-github-find/assets/118557337/75056af9-6abf-4373-be2e-18916f4f7b5e'/></div>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# GitFind 🐱‍👤
 
-Currently, two official plugins are available:
+GitFind is an innovative project that utilizes the power of the GitHub API to provide users with a seamless experience for exploring their projects, followers, and following. With GitFind, users can easily access and manage their GitHub repositories, view their list of followers, and keep track of the repositories they are following, all within a user-friendly interface.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+👉 Live Demo: in working...
 
-## Expanding the ESLint configuration
+### Build with:
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+ - React <br />
+ - CSS Vanilla <br />
+ - TypeScript <br />
+ - Vite <br />
+ - Material UI
