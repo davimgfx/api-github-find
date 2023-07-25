@@ -2,11 +2,13 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
+  width: 100%;
 }
 
 .user-projects-profile {
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   border-radius: 1.5rem;
+  
 }
 
 .link-no-decoration {
@@ -45,4 +47,12 @@
   background-color: rgb(69, 38, 78);
   border-bottom-left-radius: 1.5rem;
   border-bottom-right-radius: 1.5rem;
+  display: flex;
+  gap: 2rem
+}
+
+.user-projects-items{
+  display: flex;
+  align-items: center;
+  gap: 0.5rem
 }

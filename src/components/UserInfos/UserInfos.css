@@ -1,10 +1,10 @@
 .profile-infos{
-  max-width: 30rem;
+  max-width: 23rem;
 }
 
 .profile-infos .img-profile {
   border-radius: 999px;
-  width: 200px;
+  width: 23rem;
 }
 
 .profile-infos .info-names-profile {
@@ -24,24 +24,42 @@
 }
 
 .profile-infos .info-bio-profile {
-  font-size: 1.6rem;
+  font-size: 1.2rem;
   font-weight: 400;
 }
 
+.profile-infos .info-bio-button{
+  margin-top: 0.5rem;
+  padding: 0.6rem 0;
+  width: 100%;
+  display: flex;
+  gap: 0.4rem;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  cursor: pointer;
+  background: #0d111794;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border-radius: 0.3rem;
+}
 .profile-infos .followers-profile {
-  margin-top: 2rem;
+  margin-top: 1rem;
   display: flex;
   align-items: center;
-  font-size: 1.1rem;
+  font-size: 0.9rem;
   
 }
 
 .profile-infos .followers-profile .followers-profile-names {
   display: flex;
   align-items: center;
-  font-size: 1rem;
+  font-size: 0.8rem;
 }
 
 .profile-infos .highlight {
   color: #7d8590;
+}
+.location-profile{
+  margin-top: 0.5rem;
+  font-size: 1.2rem;
 }

@@ -1,6 +1,7 @@
 import { UserProps } from "../../types/user";
 import GroupIcon from "@mui/icons-material/Group";
 import PlaceIcon from "@mui/icons-material/Place";
+import LaunchIcon from "@mui/icons-material/Launch";
 import "./UserInfos.css";
 
 const UserInfos = ({
@@ -13,6 +14,9 @@ const UserInfos = ({
   bio,
   name,
 }: UserProps) => {
+  const openGitHubProfile = () => {
+    window.open(html_url, "_blank"); // This will open the link in a new tab
+  };
   return (
     <>
       <article className="profile-infos">
@@ -24,6 +28,10 @@ const UserInfos = ({
           <p>{login}</p>
         </div>
         <p className="info-bio-profile">{bio}</p>
+        <button className="info-bio-button" onClick={openGitHubProfile}>
+          {" "}
+          <LaunchIcon /> See on GitHub
+        </button>
         <div className="followers-profile">
           <div className="followers-profile-names">
             <h2>
@@ -39,16 +47,17 @@ const UserInfos = ({
             </h2>
           </div>
         </div>
-
-        <h2>
-          <PlaceIcon
-            sx={{
-              transform: "translateY(0.2rem)",
-              color: "#7D8590",
-            }}
-          />{" "}
-          {location}
-        </h2>
+        {location ? (
+          <h2 className="location-profile">
+            <PlaceIcon
+              sx={{
+                transform: "translateY(0.2rem)",
+                color: "#7D8590",
+              }}
+            />{" "}
+            {location}
+          </h2>
+        ) : null}
       </article>
     </>
   );
