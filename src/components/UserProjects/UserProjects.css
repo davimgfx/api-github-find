@@ -1,0 +1,48 @@
+.user-projects-div {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.user-projects-profile {
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  border-radius: 1.5rem;
+}
+
+.link-no-decoration {
+  text-decoration: none;
+  color: white;
+}
+
+.user-projects-profile-top,
+.user-projects-profile-bottom {
+  padding: 1rem;
+  
+}
+
+.user-projects-profile-top {
+  background-color: rgb(177, 96, 202);
+  border-top-right-radius: 1.5rem;
+  border-top-left-radius: 1.5rem;
+  height: 90px;
+
+}
+
+.user-projects-profile-top-title{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.4rem;
+}
+
+.user-projects-profile-top-title .public-private{
+  border: 1px solid white;
+  padding: 1rem;
+  border-radius: 15rem;
+}
+
+.user-projects-profile-bottom {
+  background-color: rgb(69, 38, 78);
+  border-bottom-left-radius: 1.5rem;
+  border-bottom-right-radius: 1.5rem;
+}

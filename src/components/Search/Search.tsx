@@ -3,16 +3,19 @@ import SearchIcon from '@mui/icons-material/Search';
 
 type SearchProps = {
   loadUser: (username: string) => Promise<void>;
+  loadUserRepos: (username: string) => Promise<void>;
 };
 
-const Search = ({ loadUser }: SearchProps) => {
+const Search = ({ loadUser, loadUserRepos }: SearchProps) => {
   const [userName, setUserName] = useState("");
 
   const handleKeyPress = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
       loadUser(userName);
+      loadUserRepos(userName);
     }
   };
+
 
   return (
     <div>
@@ -21,7 +24,7 @@ const Search = ({ loadUser }: SearchProps) => {
       <div>
         <input
           type="text"
-          placeholder="Write the user name"
+          placeholder="Search username..."
           value={userName}
           onChange={(e) => setUserName(e.target.value)}
           onKeyPress={handleKeyPress}

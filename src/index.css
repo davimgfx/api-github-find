@@ -1,25 +1,25 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    text-decoration: none;
-    border: none;
-    outline: none;
-    scroll-behavior: smooth;
-    font-family: "Nunito", sans-serif;
-  }
-  
-  /* --- basic style --- */
-  html {
-    font-size: 62.5%;
-  }
-
-body{
-    background-color: #0D1117;
-    color: white
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border: none;
+  outline: none;
+  scroll-behavior: smooth;
+  font-family: "Nunito", sans-serif;
 }
 
-.root{
+/* --- basic style --- */
+html {
+  font-size: 62.5%;
+}
+
+body {
+  background-color: #0d1117;
+  color: white;
+}
+
+.root {
   width: 130rem;
   margin: 0 auto;
+  text-decoration: none;
 }

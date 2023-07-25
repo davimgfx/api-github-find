@@ -8,3 +8,12 @@ export type UserProps = {
     bio: string,
     name: string,
   };
+
+export type UserReposProps = {
+  visibility: string; 
+  language: string;
+  forks: number;
+  html_url: string;
+  name: string;
+  description: string;
+}

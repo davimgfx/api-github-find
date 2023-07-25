@@ -1,8 +1,8 @@
-import React from "react";
 import { UserProps } from "../../types/user";
 import GroupIcon from "@mui/icons-material/Group";
 import PlaceIcon from "@mui/icons-material/Place";
 import "./UserInfos.css";
+
 const UserInfos = ({
   avatar_url,
   login,
@@ -15,7 +15,7 @@ const UserInfos = ({
 }: UserProps) => {
   return (
     <>
-      <article className="user-infos">
+      <article className="profile-infos">
         <a href={html_url} target="_blanket">
           <img src={avatar_url} alt={login} className="img-profile" />
         </a>
