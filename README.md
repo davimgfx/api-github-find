@@ -2,7 +2,7 @@
 
 # GitFind 🐱‍👤
 
-GitFind is an innovative project that utilizes the power of the GitHub API to provide users with a seamless experience for exploring their projects, followers, and following. With GitFind, users can easily access and manage their GitHub repositories, view their list of followers, and keep track of the repositories they are following, all within a user-friendly interface.
+GitFind is an innovative project that utilizes the power of the GitHub API to provide users with a seamless experience for exploring their projects, followers, and following. With GitFind, users can easily access their GitHub repositories, view their list of followers, and keep track of the repositories they are following, all within a user-friendly interface.
 
 👉 Live Demo: in working...
 
