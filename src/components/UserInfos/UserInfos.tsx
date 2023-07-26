@@ -25,48 +25,50 @@ const UserInfos = ({
         <a href={html_url} target="_blanket">
           <img src={avatar_url} alt={login} className="img-profile" />
         </a>
-        <div className="info-names-profile">
-          <h2>{name}</h2>
-          <p>{login}</p>
-        </div>
-        <p className="info-bio-profile">{bio}</p>
-        <button className="info-bio-button" onClick={openGitHubProfile}>
-          {" "}
-          <LaunchIcon /> See on GitHub
-        </button>
-        <div className="followers-profile">
-          <div className="followers-profile-names">
-            <h2>
-              {" "}
-              <GroupIcon
+        <div>
+          <div className="info-names-profile">
+            <h2>{name}</h2>
+            <p>{login}</p>
+          </div>
+          <p className="info-bio-profile">{bio}</p>
+          <button className="info-bio-button" onClick={openGitHubProfile}>
+            {" "}
+            <LaunchIcon /> See on GitHub
+          </button>
+          <div className="followers-profile">
+            <div className="followers-profile-names">
+              <h2>
+                {" "}
+                <GroupIcon
+                  sx={{
+                    transform: "translateY(0.2rem)",
+                    color: "#7D8590",
+                  }}
+                />{" "}
+                {followers} <span className="highlight">followers</span> ·{" "}
+                {following} <span className="highlight">following</span>
+              </h2>
+            </div>
+          </div>
+          {location ? (
+            <h2 className="location-profile">
+              <PlaceIcon
                 sx={{
                   transform: "translateY(0.2rem)",
                   color: "#7D8590",
                 }}
               />{" "}
-              {followers} <span className="highlight">followers</span> ·{" "}
-              {following} <span className="highlight">following</span>
+              {location}
             </h2>
-          </div>
+          ) : null}
+          {blog ? (
+            <a href={blog} target="_blanket" className="blog-profile">
+              <LinkIcon sx={{ color: "#7D8590" }} /> {blog}
+            </a>
+          ) : (
+            ""
+          )}
         </div>
-        {location ? (
-          <h2 className="location-profile">
-            <PlaceIcon
-              sx={{
-                transform: "translateY(0.2rem)",
-                color: "#7D8590",
-              }}
-            />{" "}
-            {location}
-          </h2>
-        ) : null}
-        {blog ? (
-          <a href={blog} target="_blanket" className="blog-profile">
-            <LinkIcon sx={{ color: "#7D8590" }} /> {blog}
-          </a>
-        ) : (
-          ""
-        )}
       </article>
     </>
   );

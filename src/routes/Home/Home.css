@@ -36,3 +36,25 @@
     display: flex;
     gap: 2rem
 }
+
+
+@media (max-width: 1380px) {
+    .buttons-controls{
+     width: auto;
+    }
+  }
+
+  
+@media (max-width: 800px) {
+    .user{
+        margin-top: 2rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        flex-direction: column;
+    }
+    .buttons-controls{
+        margin-top: 1rem;
+       }
+  }

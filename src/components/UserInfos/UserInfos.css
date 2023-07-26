@@ -72,3 +72,23 @@
   gap: 0.4rem;
   margin-top: 0.3rem;
 }
+
+@media (max-width: 800px) {
+  .user{
+      margin-top: 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+      flex-direction: column;
+  }
+  .profile-infos{
+    display: flex;
+    max-width: 100%;
+    gap: 2rem;
+  }
+  .profile-infos .img-profile {
+    width: 100%;
+    max-width: 23rem;
+  }
+}

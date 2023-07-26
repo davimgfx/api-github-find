@@ -23,3 +23,11 @@ body {
   margin: 0 auto;
   text-decoration: none;
 }
+
+
+@media (max-width: 1380px) {
+  .root{
+   width: auto;
+   margin: 0 2rem;
+  }
+}
