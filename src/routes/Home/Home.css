@@ -9,6 +9,28 @@
     margin-top: 1rem;
 }
 
+.buttons-controls{
+    display: flex;
+    width: 105rem;
+    margin: 0 0 0 auto;
+
+}
+
+.button-control{
+    flex: 1;
+    border-bottom: 1px solid black;
+    padding-bottom: 1rem;
+    display: flex;
+    justify-content: center;
+    color: #7D8590;
+    cursor: pointer
+}
+
+.activity-container{
+    color: white;
+    border-bottom: 2px solid rgb(177, 96, 202);
+}
+
 .user{
     margin-top: 2rem;
     display: flex;

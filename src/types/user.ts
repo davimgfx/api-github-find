@@ -7,6 +7,7 @@ export type UserProps = {
     html_url: string;
     bio: string,
     name: string,
+    blog: string
   };
 
 export type UserReposProps = {

@@ -2,6 +2,7 @@ import { UserProps } from "../../types/user";
 import GroupIcon from "@mui/icons-material/Group";
 import PlaceIcon from "@mui/icons-material/Place";
 import LaunchIcon from "@mui/icons-material/Launch";
+import LinkIcon from "@mui/icons-material/Link";
 import "./UserInfos.css";
 
 const UserInfos = ({
@@ -13,6 +14,7 @@ const UserInfos = ({
   html_url,
   bio,
   name,
+  blog,
 }: UserProps) => {
   const openGitHubProfile = () => {
     window.open(html_url, "_blank"); // This will open the link in a new tab
@@ -58,6 +60,13 @@ const UserInfos = ({
             {location}
           </h2>
         ) : null}
+        {blog ? (
+          <a href={blog} target="_blanket" className="blog-profile">
+            <LinkIcon sx={{ color: "#7D8590" }} /> {blog}
+          </a>
+        ) : (
+          ""
+        )}
       </article>
     </>
   );

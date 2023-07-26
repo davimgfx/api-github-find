@@ -14,6 +14,7 @@ const Home = () => {
     const response = await fetch(`https://api.github.com/users/${userName}`);
     const data = await response.json();
     setCurrentUser(data);
+    console.log(data)
   };
 
   const loadUserRepos = async function (userName: string) {
@@ -29,6 +30,11 @@ const Home = () => {
       <div className="find-bar">
         <img src={logo} alt="logo" className="logo" />
         <Search loadUser={loadUser} loadUserRepos={loadUserRepos} />
+      </div>
+      <div className="buttons-controls" >
+        <h2 className="button-control activity-container">Repositories</h2>
+        <h2 className="button-control ">Followers</h2>
+        <h2 className="button-control">Following</h2>
       </div>
       {currentUser && currentUserRepos && (
         <div className="user">
