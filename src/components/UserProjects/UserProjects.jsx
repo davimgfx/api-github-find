@@ -1,6 +1,7 @@
 import { Code, ForkRight, Star } from "@mui/icons-material";
 import React from "react";
 import "./UserProjects.css";
+
 const UserProjects = ({ currentUserRepos }) => {
   const style = {
     background: "rgb(131, 48, 156)",
@@ -10,13 +11,17 @@ const UserProjects = ({ currentUserRepos }) => {
 
   return (
     <div className="user-projects-div">
-      {currentUserRepos &&
+      {currentUserRepos.message === "Not Found" ? (
+        <p>Error</p>
+      ) : (
+        currentUserRepos &&
         currentUserRepos.map((repo) => (
           <div key={repo.html_url} className="user-projects-profile">
             <a
               href={repo.html_url}
               target="_blank"
-              className="user-projects-profile-links link-no-decoration">
+              className="user-projects-profile-links link-no-decoration"
+            >
               <div className="user-projects-profile-top">
                 <div className="user-projects-profile-top-title">
                   <h2>{repo.name}</h2>
@@ -42,7 +47,8 @@ const UserProjects = ({ currentUserRepos }) => {
               </div>
             </a>
           </div>
-        ))}
+        ))
+      )}
     </div>
   );
 };

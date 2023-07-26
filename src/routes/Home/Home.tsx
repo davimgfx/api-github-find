@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Search, UserInfos, UserProjects } from "../../components";
+import { Search, UserInfos, UserProjects, Error } from "../../components";
 import { UserProps, UserReposProps } from "../../types/user.ts";
 import logo from "../../assets/logodark.png";
 import "./Home.css";
@@ -9,22 +9,44 @@ const Home = () => {
   const [currentUserRepos, setCurrentUserRepos] = useState<
     UserReposProps[] | null
   >(null);
+  const [ error, setError ] = useState(false)
 
   const loadUser = async function (userName: string) {
+    setCurrentUser(null)
+    setCurrentUserRepos(null)
+    setError(false)
     const response = await fetch(`https://api.github.com/users/${userName}`);
+    
+    if(response.status === 404){
+      setError(true)
+      return
+    }
+
     const data = await response.json();
+    
     setCurrentUser(data);
-    console.log(data);
   };
 
   const loadUserRepos = async function (userName: string) {
+    setCurrentUser(null)
+    setCurrentUserRepos(null)
+    setError(false)
+    
     const responseRepos = await fetch(
       `https://api.github.com/users/${userName}/repos`
     );
-    const dataRepos = await responseRepos.json();
-    setCurrentUserRepos(dataRepos);
-  };
 
+    if(responseRepos.status === 404){
+      setError(true)
+      return
+    }
+
+    const dataRepos = await responseRepos.json();
+  
+    setCurrentUserRepos(dataRepos); 
+   
+  };
+  console.log(currentUser, currentUserRepos)
   return (
     <>
       <div className="find-bar">
@@ -43,7 +65,7 @@ const Home = () => {
       {currentUser && currentUserRepos && (
         <div className="user">
           <UserInfos {...currentUser} />
-
+          {error && <Error />}
           <UserProjects currentUserRepos={currentUserRepos} />
         </div>
       )}
