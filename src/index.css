@@ -18,7 +18,7 @@ body {
   color: white;
 }
 
-.root {
+.basic-config {
   width: 130rem;
   margin: 0 auto;
   text-decoration: none;
@@ -26,7 +26,7 @@ body {
 
 
 @media (max-width: 1380px) {
-  .root{
+  .basic-config{
    width: auto;
    margin: 0 2rem;
   }
