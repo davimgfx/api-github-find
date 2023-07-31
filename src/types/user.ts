@@ -23,8 +23,9 @@ export type UserReposProps = {
   // New property added
 };
 
-export type UserFollowingsProps = {
+export type UserFollowersProps = {
   login: string;
   avatar_url: string;
   html_url: string;
+  id: number;
 }

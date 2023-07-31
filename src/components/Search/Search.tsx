@@ -10,6 +10,8 @@ type SearchProps = {
   loadUserRepos: (username: string) => Promise<void>;
   loadUserFollowers: (username: string) => Promise<void>;
   currentUser: UserProps | null;
+  setIsActive: (active: number) => void
+  isActive: number 
 };
 
 const Search = ({
@@ -17,13 +19,18 @@ const Search = ({
   loadUser,
   loadUserRepos,
   currentUser,
+  setIsActive,
+  isActive
 }: SearchProps) => {
+  
   const [userName, setUserName] = useState("");
+ 
 
   const handleKeyPress = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
       loadUser(userName);
       loadUserRepos(userName);
+      setUserName("")
     }
   };
 
@@ -54,6 +61,8 @@ const Search = ({
                 loadUser(userName);
                 loadUserRepos(userName);
                 loadUserFollowers(userName);
+
+                setUserName("")
               }}
             />
             <LightModeIcon
@@ -71,21 +80,23 @@ const Search = ({
       {currentUser && (
         <div className="buttons-controls">
           <h2
-            className="button-control activity-container"
+    className={`button-control ${isActive === 0 ? "activity-container" : "" } `}
             onClick={() => {
-              loadUser(userName);
-              loadUserRepos(userName);
+              loadUser(currentUser.login);
+              loadUserRepos(currentUser.login);
+              setIsActive(0)
             }}>
             Repositories
           </h2>
           <h2
-            className="button-control"
+            className={`button-control ${isActive === 1 ? "activity-container" : "" } `}
             onClick={() => {
-              loadUserFollowers(userName);
+              loadUserFollowers(currentUser.login);
+              setIsActive(1)
             }}>
             Followers
           </h2>
-          <h2 className="button-control">Following</h2>
+          <h2 className={`button-control ${isActive === 2 ? "activity-container" : "" } `}>Following</h2>
         </div>
       )}
     </>

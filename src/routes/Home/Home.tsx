@@ -10,7 +10,7 @@ import {
 import {
   UserProps,
   UserReposProps,
-  UserFollowingsProps,
+  UserFollowersProps,
 } from "../../types/user.ts";
 import "./Home.css";
 
@@ -20,11 +20,12 @@ const Home = () => {
     UserReposProps[] | null
   >(null);
   const [currentUserFollowers, setCurrentUserFollowers] =
-    useState<UserFollowingsProps | null>(null);
-
+    useState<UserFollowersProps[] | null>(null);
   const [error, setError] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isActive, setIsActive] = useState<number>(0);
 
+  console.log(currentUser)
   //load user Infos
   const loadUser = async function (userName: string) {
     setCurrentUser(null);
@@ -94,6 +95,8 @@ const Home = () => {
         loadUserRepos={loadUserRepos}
         currentUser={currentUser}
         loadUserFollowers={loadUserFollowers}
+        setIsActive={setIsActive}
+        isActive={isActive}
       />
 
       {isLoading ? (
@@ -107,7 +110,7 @@ const Home = () => {
               {currentUserRepos !== null ? (
                 <UserProjects currentUserRepos={currentUserRepos} />
               ) : (
-                <UserFollowers currentUserFollowers={currentUserFollowers}/>
+                <UserFollowers setCurrentUser={setCurrentUser} currentUserFollowers={currentUserFollowers} loadUser={loadUser} loadUserRepos={loadUserRepos} loadUserFollowers={loadUserFollowers} setIsActive={setIsActive} />
               )}
             </div>
           </div>
