@@ -1,6 +1,7 @@
 .items-search-bar{
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 1.2rem
 }
 
@@ -10,4 +11,21 @@
     width: 20rem;
     border-top-left-radius: 1rem;
     border-bottom-left-radius: 1rem;
+}
+
+.buttons-controls{
+    display: flex;
+    width: 105rem;
+    margin: 0 0 0 auto;
+
+}
+
+.button-control{
+    flex: 1;
+    border-bottom: 1px solid black;
+    padding-bottom: 1rem;
+    display: flex;
+    justify-content: center;
+    color: #7D8590;
+    cursor: pointer
 }

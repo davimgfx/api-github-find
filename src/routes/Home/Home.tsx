@@ -5,9 +5,13 @@ import {
   UserProjects,
   Error,
   Loading,
+  UserFollowers
 } from "../../components";
-import { UserProps, UserReposProps } from "../../types/user.ts";
-import logo from "../../assets/logodark.png";
+import {
+  UserProps,
+  UserReposProps,
+  UserFollowingsProps,
+} from "../../types/user.ts";
 import "./Home.css";
 
 const Home = () => {
@@ -15,11 +19,14 @@ const Home = () => {
   const [currentUserRepos, setCurrentUserRepos] = useState<
     UserReposProps[] | null
   >(null);
+  const [currentUserFollowers, setCurrentUserFollowers] =
+    useState<UserFollowingsProps | null>(null);
+
   const [error, setError] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
+  //load user Infos
   const loadUser = async function (userName: string) {
-   
     setCurrentUser(null);
     setCurrentUserRepos(null);
     setError(false);
@@ -37,6 +44,7 @@ const Home = () => {
     setIsLoading(false);
   };
 
+  //load user repositories
   const loadUserRepos = async function (userName: string) {
     setIsLoading(true);
     setCurrentUser(null);
@@ -59,31 +67,48 @@ const Home = () => {
     setIsLoading(false);
   };
 
+  //load user followers
+  const loadUserFollowers = async function (userName: string) {
+    setError(false);
+    setCurrentUserRepos(null);
+    const responseRepos = await fetch(
+      `https://api.github.com/users/${userName}/followers`
+    );
+
+    if (responseRepos.status === 404) {
+      setError(true);
+      setIsLoading(false);
+      return;
+    }
+
+    const dataRepos = await responseRepos.json();
+    setCurrentUserFollowers(dataRepos);
+    setIsLoading(false);
+    console.log(dataRepos);
+  };
+
   return (
     <>
-      <div className="find-bar">
-        <img src={logo} alt="logo" className="logo" />
-        <Search loadUser={loadUser} loadUserRepos={loadUserRepos} />
-      </div>
+      <Search
+        loadUser={loadUser}
+        loadUserRepos={loadUserRepos}
+        currentUser={currentUser}
+        loadUserFollowers={loadUserFollowers}
+      />
 
       {isLoading ? (
         <Loading />
       ) : (
-        currentUser &&
-        currentUserRepos && (
+        currentUser && (
           <div>
-            <div className="buttons-controls">
-              <h2 className="button-control activity-container">
-                Repositories
-              </h2>
-              <h2 className="button-control ">Followers</h2>
-              <h2 className="button-control">Following</h2>
-            </div>
-
             <div className="user">
               <UserInfos {...currentUser} />
               {error && <Error />}
-              <UserProjects currentUserRepos={currentUserRepos} />
+              {currentUserRepos !== null ? (
+                <UserProjects currentUserRepos={currentUserRepos} />
+              ) : (
+                <UserFollowers currentUserFollowers={currentUserFollowers}/>
+              )}
             </div>
           </div>
         )

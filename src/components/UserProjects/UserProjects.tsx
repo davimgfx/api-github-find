@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { Code, ForkRight, Star } from "@mui/icons-material";
-import { UserRepo } from "../../types/user";
+import { UserReposProps } from "../../types/user";
 import "./UserProjects.css";
 
 interface UserProjectsProps {
-  currentUserRepos: UserRepo[];
+  currentUserRepos: UserReposProps[];
 }
 
 const UserProjects = ({ currentUserRepos }: UserProjectsProps) => {
@@ -39,7 +39,7 @@ const UserProjects = ({ currentUserRepos }: UserProjectsProps) => {
 
   return (
     <div className="user-projects-div">
-      {currentItems.map((repo: UserRepo) => (
+      {currentItems.map((repo: UserReposProps) => (
         <div key={repo.html_url} className="user-projects-profile">
           <a
             href={repo.html_url}

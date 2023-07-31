@@ -22,3 +22,9 @@ export type UserReposProps = {
   error: boolean;
   // New property added
 };
+
+export type UserFollowingsProps = {
+  login: string;
+  avatar_url: string;
+  html_url: string;
+}
