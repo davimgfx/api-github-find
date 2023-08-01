@@ -32,6 +32,7 @@ const Search = ({
     if (e.key === "Enter") {
       loadUser(userName);
       loadUserRepos(userName);
+      setIsActive(0)
       setUserName("")
     }
   };
