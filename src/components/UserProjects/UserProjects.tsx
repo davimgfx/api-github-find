@@ -11,6 +11,9 @@ const UserProjects = ({ currentUserRepos }: UserProjectsProps) => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 8;
 
+  if (!currentUserRepos) {
+    return <div>Loading...</div>
+  }
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = currentUserRepos.slice(indexOfFirstItem, indexOfLastItem);

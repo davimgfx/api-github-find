@@ -29,3 +29,10 @@ export type UserFollowersProps = {
   html_url: string;
   id: number;
 }
+
+export type UserFollowingsProps = {
+  login: string;
+  avatar_url: string;
+  html_url: string;
+  id: number
+}

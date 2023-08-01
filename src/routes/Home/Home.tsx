@@ -5,27 +5,32 @@ import {
   UserProjects,
   Error,
   Loading,
-  UserFollowers
+  UserFollowers,
+  UserFollowing
 } from "../../components";
 import {
   UserProps,
   UserReposProps,
   UserFollowersProps,
+  UserFollowingsProps,
 } from "../../types/user.ts";
 import "./Home.css";
 
 const Home = () => {
   const [currentUser, setCurrentUser] = useState<UserProps | null>(null);
-  const [currentUserRepos, setCurrentUserRepos] = useState<
-    UserReposProps[] | null
+  const [currentUserRepos, setCurrentUserRepos] = useState<UserReposProps[] 
+>(null);
+  const [currentUserFollowers, setCurrentUserFollowers] = useState<
+    UserFollowersProps[] | null
   >(null);
-  const [currentUserFollowers, setCurrentUserFollowers] =
-    useState<UserFollowersProps[] | null>(null);
+  const [currentUserFollowing, setCurrentUserFollowing] = useState<
+    UserFollowingsProps[] | null
+  >(null);
   const [error, setError] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isActive, setIsActive] = useState<number>(0);
-
-  console.log(currentUser)
+  console.log(currentUser);
+  
   //load user Infos
   const loadUser = async function (userName: string) {
     setCurrentUser(null);
@@ -88,13 +93,34 @@ const Home = () => {
     console.log(dataRepos);
   };
 
+  const loadUserFollowing = async function (userName: string) {
+    setError(false);
+    setCurrentUserRepos(null);
+    setCurrentUserFollowers(null);
+    const responseRepos = await fetch(
+      `https://api.github.com/users/${userName}/following`
+    );
+
+    if (responseRepos.status === 404) {
+      setError(true);
+      setIsLoading(false);
+      return;
+    }
+
+    const dataRepos = await responseRepos.json();
+    setCurrentUserFollowing(dataRepos);
+    setIsLoading(false);
+    console.log(dataRepos);
+  };
+
   return (
     <>
       <Search
+        currentUser={currentUser}
         loadUser={loadUser}
         loadUserRepos={loadUserRepos}
-        currentUser={currentUser}
         loadUserFollowers={loadUserFollowers}
+        loadUserFollowing={loadUserFollowing}
         setIsActive={setIsActive}
         isActive={isActive}
       />
@@ -103,17 +129,24 @@ const Home = () => {
         <Loading />
       ) : (
         currentUser && (
-          <div>
-            <div className="user">
+         <div className="user">
               <UserInfos {...currentUser} />
               {error && <Error />}
-              {currentUserRepos !== null ? (
+              {currentUser && isActive === 0 ? (
                 <UserProjects currentUserRepos={currentUserRepos} />
+              ) : isActive === 1 ? (
+                <UserFollowers
+                  setCurrentUser={setCurrentUser}
+                  currentUserFollowers={currentUserFollowers}
+                  loadUser={loadUser}
+                  loadUserRepos={loadUserRepos}
+                  loadUserFollowers={loadUserFollowers}
+                  setIsActive={setIsActive}
+                />
               ) : (
-                <UserFollowers setCurrentUser={setCurrentUser} currentUserFollowers={currentUserFollowers} loadUser={loadUser} loadUserRepos={loadUserRepos} loadUserFollowers={loadUserFollowers} setIsActive={setIsActive} />
+                <UserFollowing currentUserFollowing={currentUserFollowing} />
               )}
             </div>
-          </div>
         )
       )}
     </>

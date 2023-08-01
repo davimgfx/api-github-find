@@ -9,6 +9,7 @@ type SearchProps = {
   loadUser: (username: string) => Promise<void>;
   loadUserRepos: (username: string) => Promise<void>;
   loadUserFollowers: (username: string) => Promise<void>;
+  loadUserFollowing: (username: string) => Promise<void>;
   currentUser: UserProps | null;
   setIsActive: (active: number) => void
   isActive: number 
@@ -20,7 +21,8 @@ const Search = ({
   loadUserRepos,
   currentUser,
   setIsActive,
-  isActive
+  isActive,
+  loadUserFollowing
 }: SearchProps) => {
   
   const [userName, setUserName] = useState("");
@@ -96,7 +98,11 @@ const Search = ({
             }}>
             Followers
           </h2>
-          <h2 className={`button-control ${isActive === 2 ? "activity-container" : "" } `}>Following</h2>
+          <h2 className={`button-control ${isActive === 2 ? "activity-container" : "" } `}
+          onClick={() => {
+            loadUserFollowing(currentUser.login)
+            setIsActive(2)
+          }}>Following</h2>
         </div>
       )}
     </>
