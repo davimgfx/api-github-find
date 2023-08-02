@@ -6,7 +6,7 @@ import {
   Error,
   Loading,
   UserFollowers,
-  UserFollowing
+  UserFollowing,
 } from "../../components";
 import {
   UserProps,
@@ -18,8 +18,9 @@ import "./Home.css";
 
 const Home = () => {
   const [currentUser, setCurrentUser] = useState<UserProps | null>(null);
-  const [currentUserRepos, setCurrentUserRepos] = useState<UserReposProps[] 
->(null);
+  const [currentUserRepos, setCurrentUserRepos] = useState<
+    UserReposProps[] | null
+  >(null);
   const [currentUserFollowers, setCurrentUserFollowers] = useState<
     UserFollowersProps[] | null
   >(null);
@@ -29,8 +30,8 @@ const Home = () => {
   const [error, setError] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isActive, setIsActive] = useState<number>(0);
-  console.log(currentUser);
   
+
   //load user Infos
   const loadUser = async function (userName: string) {
     setCurrentUser(null);
@@ -93,6 +94,7 @@ const Home = () => {
     console.log(dataRepos);
   };
 
+  // load user following
   const loadUserFollowing = async function (userName: string) {
     setError(false);
     setCurrentUserRepos(null);
@@ -129,24 +131,30 @@ const Home = () => {
         <Loading />
       ) : (
         currentUser && (
-         <div className="user">
-              <UserInfos {...currentUser} />
-              {error && <Error />}
-              {currentUser && isActive === 0 ? (
-                <UserProjects currentUserRepos={currentUserRepos} />
-              ) : isActive === 1 ? (
-                <UserFollowers
-                  setCurrentUser={setCurrentUser}
-                  currentUserFollowers={currentUserFollowers}
-                  loadUser={loadUser}
-                  loadUserRepos={loadUserRepos}
-                  loadUserFollowers={loadUserFollowers}
-                  setIsActive={setIsActive}
-                />
-              ) : (
-                <UserFollowing currentUserFollowing={currentUserFollowing} />
-              )}
-            </div>
+          <div className="user">
+            <UserInfos {...currentUser} />
+            {error && <Error />}
+            {currentUser && isActive === 0 ? (
+              <UserProjects currentUserRepos={currentUserRepos} />
+            ) : isActive === 1 ? (
+              <UserFollowers
+                currentUserFollowers={currentUserFollowers}
+                setCurrentUser={setCurrentUser}
+                loadUser={loadUser}
+                loadUserRepos={loadUserRepos}
+                loadUserFollowers={loadUserFollowers}
+                setIsActive={setIsActive}
+              />
+            ) : (
+              <UserFollowing
+                currentUserFollowing={currentUserFollowing}
+                setCurrentUser={setCurrentUser}
+                loadUser={loadUser}
+                loadUserRepos={loadUserRepos}
+                setIsActive={setIsActive}
+              />
+            )}
+          </div>
         )
       )}
     </>
