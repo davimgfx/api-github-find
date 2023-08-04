@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Code, ForkRight, Star } from "@mui/icons-material";
 import { UserReposProps } from "../../types/user";
+import LoadingProjects  from "../LoadingProjects/LoadingProjects"
 import "./UserProjects.css";
 
 interface UserProjectsProps {
@@ -12,8 +13,9 @@ const UserProjects = ({ currentUserRepos }: UserProjectsProps) => {
   const itemsPerPage = 8;
 
   if (!currentUserRepos) {
-    return <div>Loading...</div>
+    return <LoadingProjects/>
   }
+  
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = currentUserRepos.slice(indexOfFirstItem, indexOfLastItem);

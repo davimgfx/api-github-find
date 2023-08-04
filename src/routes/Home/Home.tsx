@@ -30,89 +30,69 @@ const Home = () => {
   const [error, setError] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isActive, setIsActive] = useState<number>(0);
-  
+
+  // Function to handle API calls
+  const fetchData = async (url: string) => {
+    try {
+      setIsLoading(true);
+      setError(false);
+      const response = await fetch(url);
+      if (!response.ok) {
+        setError(true);
+        setIsLoading(false);
+        return null;
+      }
+      const data = await response.json();
+      setIsLoading(false);
+      return data;
+    } catch (error) {
+      setIsLoading(false);
+      setError(true);
+      return null;
+    }
+  };
 
   //load user Infos
   const loadUser = async function (userName: string) {
     setCurrentUser(null);
     setCurrentUserRepos(null);
-    setError(false);
-    const response = await fetch(`https://api.github.com/users/${userName}`);
-    if (response.status === 404) {
-      setError(true);
-      setIsLoading(false);
-      alert("User not found");
-      return;
+    const data = await fetchData(`https://api.github.com/users/${userName}`);
+    if (data) {
+      setCurrentUser(data);
     }
-    setIsLoading(true);
-    const data = await response.json();
-
-    setCurrentUser(data);
-    setIsLoading(false);
   };
 
   //load user repositories
-  const loadUserRepos = async function (userName: string) {
-    setIsLoading(true);
-    setCurrentUser(null);
+  const loadUserRepos = async (userName: string) => {
     setCurrentUserRepos(null);
-    setError(false);
-
-    const responseRepos = await fetch(
+    const dataRepos = await fetchData(
       `https://api.github.com/users/${userName}/repos`
     );
-
-    if (responseRepos.status === 404) {
-      setError(true);
-      setIsLoading(false);
-      return;
+    if (dataRepos) {
+      setCurrentUserRepos(dataRepos);
     }
-
-    const dataRepos = await responseRepos.json();
-
-    setCurrentUserRepos(dataRepos);
-    setIsLoading(false);
   };
 
-  //load user followers
-  const loadUserFollowers = async function (userName: string) {
-    setError(false);
-    setCurrentUserRepos(null);
-    const responseRepos = await fetch(
+  // Load user followers and update state
+  const loadUserFollowers = async (userName: string) => {
+    setCurrentUserFollowers(null);
+    const dataFollowers = await fetchData(
       `https://api.github.com/users/${userName}/followers`
     );
-
-    if (responseRepos.status === 404) {
-      setError(true);
-      setIsLoading(false);
-      return;
+    if (dataFollowers) {
+      setCurrentUserFollowers(dataFollowers);
     }
-
-    const dataRepos = await responseRepos.json();
-    setCurrentUserFollowers(dataRepos);
-    setIsLoading(false);
-    console.log(dataRepos);
   };
 
-  // load user following
-  const loadUserFollowing = async function (userName: string) {
-    setError(false);
-    setCurrentUserRepos(null);
-    setCurrentUserFollowers(null);
-    const responseRepos = await fetch(
+  // Load user following and update state
+  const loadUserFollowing = async (userName: string) => {
+    setCurrentUserFollowing(null);
+    const dataFollowing = await fetchData(
       `https://api.github.com/users/${userName}/following`
     );
-
-    if (responseRepos.status === 404) {
-      setError(true);
-      setIsLoading(false);
-      return;
+    if (dataFollowing) {
+      setCurrentUserFollowing(dataFollowing);
     }
-
-    const dataRepos = await responseRepos.json();
-    setCurrentUserFollowing(dataRepos);
-    setIsLoading(false);
-    console.log(dataRepos);
   };
 
   return (
@@ -148,9 +128,10 @@ const Home = () => {
             ) : (
               <UserFollowing
                 currentUserFollowing={currentUserFollowing}
-                setCurrentUser={setCurrentUser}
                 loadUser={loadUser}
                 loadUserRepos={loadUserRepos}
+                loadUserFollowers={loadUserFollowers}
+                setCurrentUser={setCurrentUser}
                 setIsActive={setIsActive}
               />
             )}

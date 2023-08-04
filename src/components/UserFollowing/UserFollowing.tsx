@@ -44,11 +44,11 @@ const UserFollowing = ({
                   cursor: "pointer",
                 }}
                 onClick={() => {
+                  setCurrentUser(user);
+                  setIsActive(0);
                   loadUser(user.login);
                   loadUserRepos(user.login);
                   loadUserFollowers(user.login);
-                  setIsActive(0);
-                  setCurrentUser(user); // Fixing the type here
                 }}
               />
             </div>
