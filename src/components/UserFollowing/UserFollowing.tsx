@@ -11,6 +11,22 @@ interface UserFollowingPropsInterface {
   setIsActive: (active: number) => void; // Fixing the type here
 }
 
+const convertToUserProps = (
+  userFollowersProps: UserFollowingsProps
+): UserProps => {
+  return {
+    avatar_url: userFollowersProps.avatar_url,
+    login: userFollowersProps.login,
+    location: "", // Preencha com um valor adequado
+    followers: 0, // Preencha com um valor adequado
+    following: 0, // Preencha com um valor adequado
+    html_url: userFollowersProps.html_url,
+    bio: "", // Preencha com um valor adequado
+    name: "", // Preencha com um valor adequado
+    blog: "", // Preencha com um valor adequado
+  };
+};
+
 const UserFollowing = ({
   currentUserFollowing,
   loadUser,
@@ -44,7 +60,8 @@ const UserFollowing = ({
                   cursor: "pointer",
                 }}
                 onClick={() => {
-                  setCurrentUser(user);
+                  const userProps = convertToUserProps(user);
+                  setCurrentUser(userProps);
                   setIsActive(0);
                   loadUser(user.login);
                   loadUserRepos(user.login);

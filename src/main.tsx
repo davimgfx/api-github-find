@@ -7,11 +7,11 @@ import { Home } from "./routes";
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/gitfind-api-github",
     element: <App />,
     children: [
       {
-        path: "/",
+        path: "/gitfind-api-github",
         element: <Home />,
       },
     ],

@@ -95,6 +95,8 @@ const Home = () => {
     }
   };
 
+  // ...
+
   return (
     <>
       <Search
@@ -115,17 +117,21 @@ const Home = () => {
             <UserInfos {...currentUser} />
             {error && <Error />}
             {currentUser && isActive === 0 ? (
-              <UserProjects currentUserRepos={currentUserRepos} />
+              currentUserRepos ? (
+                <UserProjects currentUserRepos={currentUserRepos} />
+              ) : null
             ) : isActive === 1 ? (
-              <UserFollowers
-                currentUserFollowers={currentUserFollowers}
-                setCurrentUser={setCurrentUser}
-                loadUser={loadUser}
-                loadUserRepos={loadUserRepos}
-                loadUserFollowers={loadUserFollowers}
-                setIsActive={setIsActive}
-              />
-            ) : (
+              currentUserFollowers ? (
+                <UserFollowers
+                  currentUserFollowers={currentUserFollowers}
+                  setCurrentUser={setCurrentUser}
+                  loadUser={loadUser}
+                  loadUserRepos={loadUserRepos}
+                  loadUserFollowers={loadUserFollowers}
+                  setIsActive={setIsActive}
+                />
+              ) : null
+            ) : currentUserFollowing ? (
               <UserFollowing
                 currentUserFollowing={currentUserFollowing}
                 loadUser={loadUser}
@@ -134,7 +140,7 @@ const Home = () => {
                 setCurrentUser={setCurrentUser}
                 setIsActive={setIsActive}
               />
-            )}
+            ) : null}
           </div>
         )
       )}
