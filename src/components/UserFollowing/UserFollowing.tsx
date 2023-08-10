@@ -58,6 +58,7 @@ const UserFollowing = ({
                   borderRadius: "100%",
                   fontSize: "2.7rem",
                   cursor: "pointer",
+                  color: "white",
                 }}
                 onClick={() => {
                   const userProps = convertToUserProps(user);

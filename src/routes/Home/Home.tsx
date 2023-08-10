@@ -98,53 +98,54 @@ const Home = () => {
   // ...
 
   return (
-    <>
-      <Search
-        currentUser={currentUser}
-        loadUser={loadUser}
-        loadUserRepos={loadUserRepos}
-        loadUserFollowers={loadUserFollowers}
-        loadUserFollowing={loadUserFollowing}
-        setIsActive={setIsActive}
-        isActive={isActive}
-      />
-
-      {isLoading ? (
-        <Loading />
-      ) : (
-        currentUser && (
-          <div className="user">
-            <UserInfos {...currentUser} />
-            {error && <Error />}
-            {currentUser && isActive === 0 ? (
-              currentUserRepos ? (
-                <UserProjects currentUserRepos={currentUserRepos} />
-              ) : null
-            ) : isActive === 1 ? (
-              currentUserFollowers ? (
-                <UserFollowers
-                  currentUserFollowers={currentUserFollowers}
-                  setCurrentUser={setCurrentUser}
+ 
+      <section className="home">
+        <Search
+          currentUser={currentUser}
+          loadUser={loadUser}
+          loadUserRepos={loadUserRepos}
+          loadUserFollowers={loadUserFollowers}
+          loadUserFollowing={loadUserFollowing}
+          setIsActive={setIsActive}
+          isActive={isActive}
+        />
+        {isLoading ? (
+          <Loading />
+        ) : (
+          currentUser && (
+            <div className="user">
+              <UserInfos {...currentUser} />
+              {error && <Error />}
+              {currentUser && isActive === 0 ? (
+                currentUserRepos ? (
+                  <UserProjects currentUserRepos={currentUserRepos} />
+                ) : null
+              ) : isActive === 1 ? (
+                currentUserFollowers ? (
+                  <UserFollowers
+                    currentUserFollowers={currentUserFollowers}
+                    setCurrentUser={setCurrentUser}
+                    loadUser={loadUser}
+                    loadUserRepos={loadUserRepos}
+                    loadUserFollowers={loadUserFollowers}
+                    setIsActive={setIsActive}
+                  />
+                ) : null
+              ) : currentUserFollowing ? (
+                <UserFollowing
+                  currentUserFollowing={currentUserFollowing}
                   loadUser={loadUser}
                   loadUserRepos={loadUserRepos}
                   loadUserFollowers={loadUserFollowers}
+                  setCurrentUser={setCurrentUser}
                   setIsActive={setIsActive}
                 />
-              ) : null
-            ) : currentUserFollowing ? (
-              <UserFollowing
-                currentUserFollowing={currentUserFollowing}
-                loadUser={loadUser}
-                loadUserRepos={loadUserRepos}
-                loadUserFollowers={loadUserFollowers}
-                setCurrentUser={setCurrentUser}
-                setIsActive={setIsActive}
-              />
-            ) : null}
-          </div>
-        )
-      )}
-    </>
+              ) : null}
+            </div>
+          )
+        )}
+      </section>
+  
   );
 };
 

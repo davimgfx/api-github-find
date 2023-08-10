@@ -1,3 +1,5 @@
+@import url("../../index.css");
+
 .items-search-bar{
     display: flex;
     align-items: center;
@@ -11,6 +13,10 @@
     width: 20rem;
     border-top-left-radius: 1rem;
     border-bottom-left-radius: 1rem;
+}
+
+.border-on{
+    border: 2px solid #CB6CE6;
 }
 
 .buttons-controls{

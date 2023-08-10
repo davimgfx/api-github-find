@@ -36,3 +36,9 @@ export type UserFollowingsProps = {
   html_url: string;
   id: number
 }
+
+export interface ThemeContextType {
+  theme: string;
+  toggleTheme: () => void;
+}
+

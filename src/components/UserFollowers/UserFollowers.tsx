@@ -60,6 +60,7 @@ const UserFollowers = ({
                   borderRadius: "100%",
                   fontSize: "2.7rem",
                   cursor: "pointer",
+                  color: "white",
                 }}
                 onClick={async () => {
                   loadUser(user.login);

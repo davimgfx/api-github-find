@@ -67,15 +67,14 @@
   bottom: -3rem;
   justify-content: center;
   display: flex;
-  gap: 2rem;
+  gap: 1rem;
 }
 
 .pagination-buttons .button{
   margin-top: 0.5rem;
-  padding: 0.6rem 0;
+  padding: 0.6rem 0.5rem;
   width: 100%;
   display: flex;
-  gap: 0.4rem;
   align-items: center;
   justify-content: center;
   color: white;
