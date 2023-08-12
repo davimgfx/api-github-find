@@ -26,3 +26,6 @@ GitFind is an innovative project that utilizes the power of the GitHub API to pr
 
 ### User Following
 ![screencapture-davimgfx-github-io-gitfind-api-github-2023-08-08-20_03_30](https://github.com/davimgfx/gitfind-api-github/assets/118557337/ec2137ad-7f21-4f0f-9349-ec2672d16531)
+
+#Light Mode
+![Screenshot_1](https://github.com/davimgfx/gitfind-api-github/assets/118557337/0b6c3678-5038-4ee9-850d-0e138a5a03b8)
